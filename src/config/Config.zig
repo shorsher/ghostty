@@ -7289,6 +7289,20 @@ pub const Keybinds = struct {
                 .{ .performable = true },
             );
 
+            // Command Palette
+            try self.set.putFlags(
+                alloc,
+                .{ .key = .{ .unicode = 'n' }, .mods = .{ .ctrl = true } },
+                .{ .navigate_command_palette = .next },
+                .{ .performable = true },
+            );
+            try self.set.putFlags(
+                alloc,
+                .{ .key = .{ .unicode = 'p' }, .mods = .{ .ctrl = true } },
+                .{ .navigate_command_palette = .previous },
+                .{ .performable = true },
+            );
+
             // Inspector, matching Chromium
             try self.set.put(
                 alloc,

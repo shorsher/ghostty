@@ -425,6 +425,12 @@ pub const Action = union(enum) {
     /// Valid values: `previous`, `next`.
     navigate_search: NavigateSearch,
 
+    /// Navigate the command palette entries. If the command palette entry list is empty, this
+    /// is not performed.
+    ///
+    /// Valid values: `previous`, `next`.
+    navigate_command_palette: NavigateCommandPalette,
+
     /// Start a search if it isn't started already. This doesn't set any
     /// search terms, but opens the UI for searching.
     start_search,
@@ -1036,6 +1042,11 @@ pub const Action = union(enum) {
         next,
     };
 
+    pub const NavigateCommandPalette = enum {
+        previous,
+        next,
+    };
+
     pub const AdjustSelection = enum {
         left,
         right,
@@ -1384,6 +1395,7 @@ pub const Action = union(enum) {
             .cursor_key,
             .search,
             .navigate_search,
+            .navigate_command_palette,
             .search_selection,
             .start_search,
             .end_search,

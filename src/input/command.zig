@@ -220,6 +220,16 @@ fn actionCommands(action: Action.Key) []const Command {
             .description = i18n.N_("Navigate to the previous search result, if any."),
         } },
 
+        .navigate_command_palette => comptime &.{ .{
+            .action = .{ .navigate_command_palette = .next },
+            .title = i18n.N_("Next Command Palette Item"),
+            .description = i18n.N_("Navigate to the next item in the command palette, if any."),
+        }, .{
+            .action = .{ .navigate_command_palette = .previous },
+            .title = i18n.N_("Previous Command Palette Item"),
+            .description = i18n.N_("Navigate to the previous item in the command palette, if any."),
+        } },
+
         .increase_font_size => comptime &.{.{
             .action = .{ .increase_font_size = 1 },
             .title = i18n.N_("Increase Font Size"),

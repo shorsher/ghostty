@@ -5041,6 +5041,17 @@ pub fn performBindingAction(self: *Surface, action: input.Binding.Action) !bool 
             s.state.wakeup.notify() catch {};
         },
 
+        .navigate_command_palette => |nav| {
+            return try self.rt_app.performAction(
+                .{ .surface = self },
+                .navigate_command_palette,
+                switch (nav) {
+                    .next => .next,
+                    .previous => .previous,
+                },
+            );
+        },
+
         .copy_to_clipboard => |format| {
             self.renderer_state.mutex.lockUncancelable(global.io());
             defer self.renderer_state.mutex.unlock(global.io());

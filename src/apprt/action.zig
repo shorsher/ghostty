@@ -118,6 +118,9 @@ pub const Action = union(Key) {
     /// Toggle the command palette.
     toggle_command_palette,
 
+    /// Navigate the command palette entries.
+    navigate_command_palette: NavigateCommandPalette,
+
     /// Toggle the visibility of all Ghostty terminal windows.
     toggle_visibility,
 
@@ -371,6 +374,7 @@ pub const Action = union(Key) {
         toggle_window_decorations,
         toggle_quick_terminal,
         toggle_command_palette,
+        navigate_command_palette,
         toggle_visibility,
         toggle_background_opacity,
         move_tab,
@@ -512,6 +516,17 @@ pub const SplitDirection = enum(c_int) {
 
     test "ghostty.h SplitDirection" {
         try lib.checkGhosttyHEnum(SplitDirection, "GHOSTTY_SPLIT_DIRECTION_");
+    }
+};
+
+// This is made extern (c_int) to make interop easier with our embedded
+// runtime. The small size cost doesn't make a difference in our union.
+pub const NavigateCommandPalette = enum(c_int) {
+    previous,
+    next,
+
+    test "ghostty.h NavigateCommandPalette" {
+        try lib.checkGhosttyHEnum(NavigateCommandPalette, "GHOSTTY_COMMAND_PALETTE_");
     }
 };
 
